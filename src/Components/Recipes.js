@@ -1,10 +1,12 @@
 import React from 'react';
 
+import {Link} from "react-router-dom";
+
 const Recipes = props => (
     <div className="container">
         <div className="row">
             { props.recipes.map((recipe) => {
-                console.log(recipe)
+                //console.log(recipe)
                 return (
                     <div key={recipe.recipe.uri} className="col-md-4" style={{marginBottom:"2rem"}}>
                         <div className="recipes__box">
@@ -21,7 +23,12 @@ const Recipes = props => (
                                     <span> {recipe.recipe.source}</span>
                                 </p>
                             </div>
-                            <button className="recipe_buttons">View Recipe</button>
+                            <button className="recipe_buttons">
+                                <Link to={{ 
+                                    pathname: `/recipe/${recipe.recipe.uri}`,
+                                    state: { recipe: recipe.recipe.label }
+                                }}>View Recipe</Link>
+                            </button>
                         </div>
                     </div>
                 );
